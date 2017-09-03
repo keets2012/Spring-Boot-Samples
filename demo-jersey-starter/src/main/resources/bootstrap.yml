@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: demo-starter-aoho-${spring.profiles.active:default}
+
+---
+server:
+  port: 8989

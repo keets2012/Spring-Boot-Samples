@@ -1,0 +1,11 @@
+swagger:
+#  enabled: true
+  title: spring-boot-starter-swagger
+  config-id: demo-jersey
+  version: v2
+  license: Apache License, Version 2.0
+  licenseUrl: https://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfServiceUrl: http://git.oschina.net/keets/jersey-starter-swagger
+  contact: keets
+  base-path: /**
+  resource-package: cn.aoho.starter.jersey
