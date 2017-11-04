@@ -1,21 +1,19 @@
 
-我的博客：http://hacloud.club   
+### 我的博客：http://blueskykong.com   
 
-## Spring-Cloud-Samples
+### Spring-Boot-Samples(Spring Cloud)
 
 spring cloud's Samples project.
-该项目引用了parent的依赖：
-```pom
-    <parent>
-        <artifactId>cloud-parent</artifactId>
-        <groupId>cn.aoho</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
-```
-git地址：
-> http://git.oschina.net/keets/Cloud-Parent
 
-该项目包含以下samples模块(后面继续更新)；
+**github地址：https://github.com/keets2012/Spring-Boot-Samples   
+git ee: https://gitee.com/keets/spring-boot-samples**
+
+该项目包含以下samples模块(更新中)；
 - demo-jersey-starter
-- ...
+- zipkin-server-stream
+
+### 订阅最新文章，欢迎关注我的公众号
+
+![微信公众号](http://ovci9bs39.bkt.clouddn.com/qrcode_for_gh_ca56415d4966_430.jpg)
+
 

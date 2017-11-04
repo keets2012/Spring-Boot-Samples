@@ -1,10 +1,10 @@
-package cn.aoho.starter.jersey.config;
+package com.blueskykong.starter.jersey.config;
 
 /**
  * Created by keets on 2017/6/28.
  */
 
-import cn.aoho.starter.jersey.rest.UserResource;
+import com.blueskykong.starter.jersey.rest.UserResource;
 import io.swagger.jaxrs.listing.ApiListingResource;
 import io.swagger.jaxrs.listing.SwaggerSerializers;
 import org.glassfish.jersey.server.ResourceConfig;

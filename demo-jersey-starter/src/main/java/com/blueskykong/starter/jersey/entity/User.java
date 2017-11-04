@@ -1,4 +1,4 @@
-package cn.aoho.starter.jersey.entity;
+package com.blueskykong.starter.jersey.entity;
 
 /**
  * Created by keets on 2017/8/29.

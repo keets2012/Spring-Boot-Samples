@@ -8,4 +8,4 @@ swagger:
   termsOfServiceUrl: http://git.oschina.net/keets/jersey-starter-swagger
   contact: keets
   base-path: /**
-  resource-package: cn.aoho.starter.jersey
+  resource-package: com.blueskykong.starter.jersey

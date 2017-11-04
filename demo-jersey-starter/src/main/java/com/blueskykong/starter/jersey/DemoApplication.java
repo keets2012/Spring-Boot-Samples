@@ -1,4 +1,4 @@
-package cn.aoho.starter.jersey;
+package com.blueskykong.starter.jersey;
 
 import cn.keets.swagger.EnableSwagger2Doc;
 import org.slf4j.Logger;

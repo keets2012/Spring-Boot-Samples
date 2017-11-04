@@ -1,4 +1,4 @@
-package cn.aoho.starter.jersey.rest;
+package com.blueskykong.starter.jersey.rest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
