@@ -1,4 +1,4 @@
-### Spring-Boot-Samples(Spring Cloud)
+# Spring-Boot-Samples(Spring Cloud)
 
 ### modules
 
@@ -7,7 +7,9 @@
 - zipkin-server-stream
 - ...
 
-### 我的博客：http://blueskykong.com   
+#### 我的博客
+http://blueskykong.com   
+
 **github地址：https://github.com/keets2012/Spring-Boot-Samples   
 git ee: https://gitee.com/keets/spring-boot-samples   
 你的star是对我最好的鼓励^_^**
