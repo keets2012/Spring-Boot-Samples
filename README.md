@@ -10,9 +10,10 @@
 #### 我的博客
 http://blueskykong.com   
 
-**github地址：https://github.com/keets2012/Spring-Boot-Samples   
+github地址：https://github.com/keets2012/Spring-Boot-Samples   
 git ee: https://gitee.com/keets/spring-boot-samples   
-你的star是对我最好的鼓励^_^**
+
+**你的star是对我最好的鼓励^_^**
 
 ### 订阅最新文章，欢迎关注我的公众号
 
