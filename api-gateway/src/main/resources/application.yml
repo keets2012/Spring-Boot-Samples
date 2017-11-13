@@ -1,0 +1,27 @@
+
+zuul:
+  host:
+    maxTotalConnections: 200
+    maxPerRouteConnections: 20
+  #ignoreLocalService: false  #totaly a trap
+  #the same with auth permitall
+  #ignoredPatterns: /login/**
+  #ignoredServices: '*'    #Set of service names not to consider for proxying automatically. By default all services in the discovery client will be proxied.
+  routes:
+    auth:
+      path: /user/**
+      ignoredPatterns: /consul
+      serviceId: user
+      sensitiveHeaders: Cookie,Set-Cookie
+
+ribbon:
+  ReadTimeout: 1000
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          strategy: THREAD
+          thread:
+            timeoutInMilliseconds: 1000

@@ -19,6 +19,8 @@
     <modules>
         <module>demo-jersey-starter</module>
         <module>zipkin-server-stream</module>
+        <module>config-client</module>
+        <module>api-gateway</module>
     </modules>
 
     <properties>
@@ -40,6 +42,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
