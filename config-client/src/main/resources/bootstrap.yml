@@ -1,0 +1,67 @@
+
+server:
+  port: 9901
+
+spring:
+  #profiles: exp
+  application:
+    name: gatewayserver
+  cloud:
+    consul:
+      discovery:
+        preferIpAddress: true
+        enabled: true
+        register: true
+        service-name: config-client
+        #hostname: localhost
+        health-check-interval: 10s
+        health-check-timeout: 20s
+        heartbeat:
+          enabled: true
+        #health-check-url:
+        #host-info: config-host-info
+        instance-id: api-getway
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+        lifecycle:
+          enabled: true
+        scheme: http
+        prefer-agent-address: false
+        register-health-check: true
+        tags: master
+        query-passing: true
+        #health-check-path: ping -c1 google.com >/dev/null
+      retry:
+        initial-interval: 1000
+        max-attempts: 4
+        max-interval: 1000
+      host: 116.62.146.35
+      #host: ${CONSUL_ADDRESS:192.168.1.200}
+      port: ${CONSUL_PORT:8500}
+  http:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+---
+spring:
+  profiles: default
+  cloud:
+    config:
+      discovery:
+        service-id: config-service
+        enabled: true
+---
+spring:
+  profiles: exp
+  application:
+    name: configclient
+  cloud:
+    config:
+      profile: exp
+      label: master
+      discovery:
+        enabled: true
+        service-id: config-service
+      enabled: true
+      fail-fast: true
