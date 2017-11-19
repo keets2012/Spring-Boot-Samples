@@ -1,0 +1,53 @@
+server:
+  port: 8888
+
+spring:
+  application:
+    name: config-server
+  cloud:
+      consul:
+        discovery:
+          preferIpAddress: true
+          enabled: true
+          register: true
+          service-name: config-service
+          health-check-interval: 10s
+          health-check-timeout: 20s
+          heartbeat:
+            enabled: true
+          ip-address: localhost
+          port: ${server.port}
+          lifecycle:
+            enabled: true
+          scheme: http
+          prefer-agent-address: false
+          register-health-check: true
+          tags: master
+          query-passing: true
+        retry:
+          initial-interval: 1000
+          max-attempts: 4
+          max-interval: 1000
+        host: localhost
+        port: 8500
+
+
+logging:
+  level:
+    com.netflix.discovery: 'OFF'
+    org.springframework.cloud: 'info'
+
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/keets/Config-Repo.git
+          searchPaths: ${APP_LOCATE:dev}
+          username: username
+          password: pwd
+
+---
+spring:
+  profiles: default
