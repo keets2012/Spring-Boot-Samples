@@ -38,7 +38,9 @@ logging:
     org.springframework.cloud: 'info'
 
 
+---
 spring:
+  profiles: default
   cloud:
     config:
       server:
@@ -48,6 +50,4 @@ spring:
           username: username
           password: pwd
 
----
-spring:
-  profiles: default
+
