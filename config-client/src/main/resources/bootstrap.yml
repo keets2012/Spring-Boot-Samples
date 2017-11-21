@@ -2,6 +2,7 @@
 server:
   port: 9901
 
+management.security.enabled: false
 
 cloud:
   version: Brixton SR7
@@ -31,7 +32,7 @@ spring:
         initial-interval: 1000
         max-attempts: 4
         max-interval: 1000
-      host: localhost
+      host: 116.62.146.35
       port: 8500
 
 ---

@@ -1,3 +1,5 @@
+
+
 server:
   port: 8888
 
@@ -28,7 +30,7 @@ spring:
           initial-interval: 1000
           max-attempts: 4
           max-interval: 1000
-        host: localhost
+        host: 116.62.146.35
         port: 8500
 
 
@@ -37,17 +39,13 @@ logging:
     com.netflix.discovery: 'OFF'
     org.springframework.cloud: 'info'
 
-
 ---
 spring:
-  profiles: default
   cloud:
     config:
       server:
         git:
           uri: https://gitee.com/keets/Config-Repo.git
           searchPaths: ${APP_LOCATE:dev}
-          username: username
-          password: pwd
-
-
+          username: keets
+          password: keets1992
