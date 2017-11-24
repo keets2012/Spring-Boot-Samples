@@ -22,6 +22,7 @@
         <module>config-client</module>
         <module>api-gateway</module>
         <module>config-server</module>
+        <module>auth-backend</module>
     </modules>
 
     <properties>
