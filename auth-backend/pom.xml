@@ -38,6 +38,10 @@
             <version>${common.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
             <groupId>cn.superid</groupId>
             <artifactId>cloud-common-security</artifactId>
             <version>${common.version}</version>
