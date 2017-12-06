@@ -9,12 +9,14 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import javax.servlet.Filter;
+import javax.servlet.FilterChain;
+import javax.servlet.FilterConfig;
+import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.ws.rs.container.ContainerRequestContext;
-import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
-import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,20 +25,27 @@ import java.util.UUID;
 /**
  * @author keets
  */
-@Provider
-public class CustomAuthorizationFilter implements ContainerRequestFilter {
+//@WebFilter(filterName="ServletFilter",urlPatterns="/*")
+public class AuthorizationFilter implements Filter {
 
     @Autowired
     private FeignAuthClient feignAuthClient;
 
     @Override
-    public void filter(ContainerRequestContext containerRequestContext) throws IOException {
-        String userId = containerRequestContext.getHeaderString(SecurityConstants.USER_ID_IN_HEADER);
+    public void init(FilterConfig filterConfig) throws ServletException {
+        System.out.println("初始化过滤器。");
+    }
+
+    @Override
+    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+        System.out.println("过滤器正在执行...");
+        // pass the request along the filter chain
+        String userId = ((HttpServletRequest) servletRequest).getHeader(SecurityConstants.USER_ID_IN_HEADER);
 
         if (StringUtils.isNotEmpty(userId)) {
             UserContext userContext = new UserContext(UUID.fromString(userId));
             userContext.setAccessType(AccessType.ACCESS_TYPE_NORMAL);
-            System.out.println(userContext);
+
             List<Permission> permissionList = feignAuthClient.getUserPermissions(userId);
             List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
             for (Permission permission : permissionList) {
@@ -48,5 +57,11 @@ public class CustomAuthorizationFilter implements ContainerRequestFilter {
 
             SecurityContextHolder.setContext(userContext);
         }
+        filterChain.doFilter(servletRequest, servletResponse);
+    }
+
+    @Override
+    public void destroy() {
+
     }
 }
