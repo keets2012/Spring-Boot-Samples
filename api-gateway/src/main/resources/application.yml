@@ -13,6 +13,11 @@ zuul:
       ignoredPatterns: /consul
       serviceId: user
       sensitiveHeaders: Cookie,Set-Cookie
+    audit:
+      path: /audit/**
+      ignoredPatterns: /consul
+      serviceId: audit
+      sensitiveHeaders: Cookie,Set-Cookie
 
 ribbon:
   ReadTimeout: 1000

@@ -27,3 +27,4 @@ hs_err_pid*
 /api-gateway/src/main/resources/*.yml
 /config-server/src/main/resources/bootstrap.yml
 /config-client/src/main/resources/bootstrap.yml
+/auth-backend/src/main/resources/bootstrap.yml

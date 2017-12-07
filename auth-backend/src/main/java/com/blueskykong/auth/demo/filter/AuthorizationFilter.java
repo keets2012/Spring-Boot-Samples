@@ -7,6 +7,7 @@ import com.blueskykong.auth.demo.client.FeignAuthClient;
 import com.blueskykong.auth.demo.entity.Permission;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.BeanPostProcessor;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.servlet.Filter;
@@ -25,7 +26,6 @@ import java.util.UUID;
 /**
  * @author keets
  */
-//@WebFilter(filterName="ServletFilter",urlPatterns="/*")
 public class AuthorizationFilter implements Filter {
 
     @Autowired
