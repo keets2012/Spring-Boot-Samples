@@ -13,11 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
-//    @PreAuthorize("hasAuthority('CREATE_COMPANY')")
+//    @PreAuthorize(value = "hasAuthority('CREATE_COMPANY')") hasRole('Admin')
     @PreAuth("CREATE_COMPANY")
     public String getPermissionsMap() {
         return "ok";
     }
-
-
 }

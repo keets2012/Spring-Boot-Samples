@@ -1,12 +1,14 @@
 package com.blueskykong.auth.demo.filter;
 
 import com.blueskykong.auth.demo.annotation.PreAuth;
+import com.blueskykong.auth.demo.security.SecurityExpressionOperations;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -18,6 +20,10 @@ import javax.xml.ws.Response;
 @Component
 @Aspect
 public class AuthAspect {
+
+
+    @Autowired
+    private SecurityExpressionOperations securityExpressionOperations;
 
     @Pointcut("@annotation(com.blueskykong.auth.demo.annotation.PreAuth)")
     private void cut() {
@@ -42,9 +48,11 @@ public class AuthAspect {
     //当想获得注解里面的属性，可以直接注入改注解
     @Around("cut()&&@annotation(preAuth)")
     public Object record(ProceedingJoinPoint joinPoint, PreAuth preAuth) throws Throwable {
+
         String value = preAuth.value();
         System.out.println(preAuth.value());
-//        boolean rl = SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(value);
+        securityExpressionOperations.hasAnyAuthority();
+        boolean rl = SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(value);
         if (!value.equals("CREATE_COMPANY")) {
             return joinPoint.proceed();
         }
