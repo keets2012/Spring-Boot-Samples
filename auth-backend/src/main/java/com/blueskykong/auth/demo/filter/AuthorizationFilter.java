@@ -5,9 +5,11 @@ import cn.superid.common.security.SecurityConstants;
 import cn.superid.common.security.SimpleGrantedAuthority;
 import com.blueskykong.auth.demo.client.FeignAuthClient;
 import com.blueskykong.auth.demo.entity.Permission;
+import com.blueskykong.auth.demo.security.CustomAuthentication;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanPostProcessor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.servlet.Filter;
@@ -53,8 +55,11 @@ public class AuthorizationFilter implements Filter {
                 authority.setAuthority(permission.getPermission());
                 authorityList.add(authority);
             }
-            userContext.setAuthorities(authorityList);
 
+            CustomAuthentication userAuth  = new CustomAuthentication();
+            userAuth.setAuthorities(authorityList);
+            userContext.setAuthorities(authorityList);
+            userContext.setAuthentication(userAuth);
             SecurityContextHolder.setContext(userContext);
         }
         filterChain.doFilter(servletRequest, servletResponse);

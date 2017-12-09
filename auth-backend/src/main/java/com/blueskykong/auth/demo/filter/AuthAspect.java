@@ -1,7 +1,7 @@
 package com.blueskykong.auth.demo.filter;
 
 import com.blueskykong.auth.demo.annotation.PreAuth;
-import com.blueskykong.auth.demo.security.SecurityExpressionOperations;
+import com.blueskykong.auth.demo.security.CustomerSecurityExpressionRoot;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -9,6 +9,14 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.EvaluationException;
+import org.springframework.expression.Expression;
+import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.standard.SpelExpressionParser;
+import org.springframework.expression.spel.support.StandardEvaluationContext;
+import org.springframework.security.access.expression.SecurityExpressionOperations;
+import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
@@ -22,8 +30,6 @@ import javax.xml.ws.Response;
 public class AuthAspect {
 
 
-    @Autowired
-    private SecurityExpressionOperations securityExpressionOperations;
 
     @Pointcut("@annotation(com.blueskykong.auth.demo.annotation.PreAuth)")
     private void cut() {
@@ -50,14 +56,24 @@ public class AuthAspect {
     public Object record(ProceedingJoinPoint joinPoint, PreAuth preAuth) throws Throwable {
 
         String value = preAuth.value();
-        System.out.println(preAuth.value());
-        securityExpressionOperations.hasAnyAuthority();
-        boolean rl = SecurityContextHolder.getContext().getAuthentication().getAuthorities().contains(value);
-        if (!value.equals("CREATE_COMPANY")) {
+
+        SecurityContextHolder.getContext();
+        //Spring EL 对value进行解析
+        SecurityExpressionOperations operations = new CustomerSecurityExpressionRoot(SecurityContextHolder.getContext().getAuthentication());
+        StandardEvaluationContext operationContext = new StandardEvaluationContext(operations);
+        ExpressionParser parser = new SpelExpressionParser();
+        Expression expression = parser.parseExpression(value);
+        boolean result = expression.getValue(operationContext, boolean.class);
+
+
+        if (result) {
             return joinPoint.proceed();
         }
         return "401";
     }
+
+
+
 
 }
 
