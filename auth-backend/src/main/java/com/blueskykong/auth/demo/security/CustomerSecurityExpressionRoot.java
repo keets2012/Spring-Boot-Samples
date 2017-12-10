@@ -1,18 +1,7 @@
 package com.blueskykong.auth.demo.security;
 
-import java.io.Serializable;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-
-import org.springframework.security.access.PermissionEvaluator;
-import org.springframework.security.access.expression.*;
-import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
-import org.springframework.security.authentication.AuthenticationTrustResolver;
+import org.springframework.security.access.expression.SecurityExpressionRoot;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.stereotype.Component;
 
 
 /**

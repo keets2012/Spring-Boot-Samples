@@ -14,8 +14,8 @@ public class DemoController {
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
 //    @PreAuthorize(value = "hasAuthority('CREATE_COMPANY')") hasRole('Admin')
-    @PreAuth("CREATE_COMPANY")
-    public String getPermissionsMap() {
+    @PreAuth("hasAuthority('CREATE_COMPANY')")
+    public String test() {
         return "ok";
     }
 }

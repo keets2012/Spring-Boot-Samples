@@ -1,6 +1,6 @@
 package com.blueskykong.auth.demo.filter;
 
-import cn.superid.common.security.AccessType;
+import com.blueskykong.auth.demo.constants.AccessType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
