@@ -1,19 +1,16 @@
 package com.blueskykong.auth.demo.filter;
 
-import cn.superid.common.security.AccessType;
-import cn.superid.common.security.SecurityConstants;
-import cn.superid.common.security.SimpleGrantedAuthority;
 import com.blueskykong.auth.demo.client.FeignAuthClient;
+import com.blueskykong.auth.demo.constants.AccessType;
+import com.blueskykong.auth.demo.constants.SecurityConstants;
 import com.blueskykong.auth.demo.entity.Permission;
+import com.blueskykong.auth.demo.security.SimpleGrantedAuthority;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
-import javax.ws.rs.container.ContainerResponseContext;
-import javax.ws.rs.container.ContainerResponseFilter;
 import javax.ws.rs.ext.Provider;
 import java.io.IOException;
 import java.util.ArrayList;
