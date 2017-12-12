@@ -1,5 +1,11 @@
 # Spring-Boot-Samples(Spring Cloud)
 
+
+**网关、auth权限服务和backend服务的整合项目地址为：   
+GitHub：https://github.com/keets2012/microservice-integration   
+或者 码云：https://gitee.com/keets/microservice-integration**
+
+
 ### modules
 
 该项目包含以下samples模块(更新中)；
