@@ -20,9 +20,10 @@
         <module>demo-jersey-starter</module>
         <module>zipkin-server-stream</module>
         <module>config-client</module>
-        <module>api-gateway</module>
+        <module>zuul-gateway</module>
         <module>config-server</module>
         <module>auth-backend</module>
+        <module>spring-boot-async</module>
     </modules>
 
     <properties>

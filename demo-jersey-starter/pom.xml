@@ -13,7 +13,7 @@
 
     <dependencies>
         <dependency>
-            <groupId>cn.keets</groupId>
+            <groupId>com.blueskykong</groupId>
             <artifactId>jersey-starter-swagger</artifactId>
             <version>1.0.0.RELEASE</version>
         </dependency>

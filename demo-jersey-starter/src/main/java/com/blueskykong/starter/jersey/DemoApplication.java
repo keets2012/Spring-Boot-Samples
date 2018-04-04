@@ -1,6 +1,6 @@
 package com.blueskykong.starter.jersey;
 
-import cn.keets.swagger.EnableSwagger2Doc;
+import com.blueskykong.swagger.EnableSwagger2Doc;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;

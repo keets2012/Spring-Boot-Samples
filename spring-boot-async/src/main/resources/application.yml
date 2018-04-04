@@ -1,0 +1,3 @@
+spring.redis.pool:
+  max-wait: 5000
+  max-active: 10

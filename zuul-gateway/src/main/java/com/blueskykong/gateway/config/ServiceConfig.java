@@ -1,5 +1,6 @@
 package com.blueskykong.gateway.config;
 
+import com.blueskykong.gateway.properties.PermitAllUrlProperties;
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
@@ -7,6 +8,7 @@ import org.apache.tomcat.util.descriptor.web.SecurityConstraint;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerFactory;
 import org.springframework.boot.context.embedded.tomcat.TomcatEmbeddedServletContainerFactory;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -27,24 +29,12 @@ public class ServiceConfig {
     @Value("${server.http}")
     private int httpPort;
 
-    //cors config
-    /*@Bean
-    public CorsFilter corsFilter() {
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        final CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
-        config.addAllowedOrigin("*");
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("OPTIONS");
-        config.addAllowedMethod("HEAD");
-        config.addAllowedMethod("GET");
-        config.addAllowedMethod("PUT");
-        config.addAllowedMethod("POST");
-        config.addAllowedMethod("DELETE");
-        config.addAllowedMethod("PATCH");
-        source.registerCorsConfiguration("*//**", config);
-        return new CorsFilter(source);
-    }*/
+    @Bean
+    @ConfigurationProperties(prefix = "auth")
+    public PermitAllUrlProperties getPermitAllUrlProperties() {
+        return new PermitAllUrlProperties();
+    }
+
 
     @Bean
     public EmbeddedServletContainerFactory servletContainer() {
