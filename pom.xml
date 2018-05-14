@@ -24,6 +24,9 @@
         <module>config-server</module>
         <module>auth-backend</module>
         <module>spring-boot-async</module>
+        <module>zipkin-service-a</module>
+        <module>zipkin-service-b</module>
+        <module>java-spi</module>
     </modules>
 
     <properties>

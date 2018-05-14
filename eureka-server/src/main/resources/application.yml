@@ -1,0 +1,59 @@
+
+
+---
+spring:
+  profiles: standalone
+  application:
+    name: eureka-server-standalone
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: standalone
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    service-url:
+      default-zone: http://${eureka.instance.hostname}:${server.port}/eureka/
+info:
+  app:
+    name: Eureka-Server
+
+
+
+
+
+---
+spring:
+  profiles: peer1
+  application:
+    name: eureka-server-peer1
+server:
+  port: 8762
+eureka:
+  instance:
+    hostname: peer2
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    service-url:
+      default-zone: http://peer2/eureka/
+---
+spring:
+  profiles: peer2
+  application:
+    name: eureka-server-peer2
+server:
+  port: 8763
+eureka:
+  instance:
+    hostname: peer3
+    instance-id: ${spring.application.name}:${vcap.application.instance_id:${spring.application.instance_id:${random.value}}}
+  client:
+    service-url:
+      default-zone: http://peer1/eureka/
+
+---
+spring:
+  profiles:
+    active: standalone

@@ -14,7 +14,7 @@
 *.jar
 *.war
 *.ear
-
+*/.mvn/
 target/
 *.iml
 auditlog/
