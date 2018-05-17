@@ -1,6 +1,7 @@
 package com.blueskykong.springboot.rabbitmq.stream;
 
 import com.blueskykong.springboot.rabbitmq.config.AmqpConfig;
+import com.blueskykong.springboot.rabbitmq.entity.TransactionMsg;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.support.CorrelationData;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +23,10 @@ public class StreamSender implements RabbitTemplate.ConfirmCallback {
         this.rabbitTemplate = rabbitTemplate;
     }
 
-    public void sendMsg(String content) {
+    public void sendMsg(TransactionMsg content) {
         CorrelationData correlationId = new CorrelationData(UUID.randomUUID().toString());
         System.out.println(correlationId);
-        rabbitTemplate.convertAndSend(AmqpConfig.EXCHANGE, AmqpConfig.ROUTINGKEY, content, correlationId);
+        rabbitTemplate.convertAndSend(AmqpConfig.EXCHANGE, AmqpConfig.ROUTINGKEY, "123456", correlationId);
     }
 
     /**

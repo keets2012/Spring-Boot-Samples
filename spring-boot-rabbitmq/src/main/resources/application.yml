@@ -19,26 +19,26 @@ logging:
   path: "./logs"
 
 ---
-spring:
-  cloud:
-    stream:
-      bindings:
-        test-input:
-          group: testGroup
-          content-type: application/x-java-object;type=com.blueskykong.springboot.rabbitmq.entity.TransactionMsg
-          destination: tx-test
-          binder: rabbit1
-      binders:
-        rabbit1:
-          type: rabbit
-          environment:
-            spring:
-              rabbitmq:
-                host: 120.55.43.136
-                port: 5672
-                username: guest
-                password: guest
-                virtual-host: /
+#spring:
+#  cloud:
+#    stream:
+#      bindings:
+#        test-input:
+#          group: testGroup
+#          content-type: application/x-java-object;type=com.blueskykong.springboot.rabbitmq.entity.TransactionMsg
+#          destination: tx-test
+#          binder: rabbit1
+#      binders:
+#        rabbit1:
+#          type: rabbit
+#          environment:
+#            spring:
+#              rabbitmq:
+#                host: 120.55.43.136
+#                port: 5672
+#                username: guest
+#                password: guest
+#                virtual-host: /
 
 ---
 tx:

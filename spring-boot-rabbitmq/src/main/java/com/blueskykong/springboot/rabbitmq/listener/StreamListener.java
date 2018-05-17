@@ -24,6 +24,7 @@ public class StreamListener {
 
     @org.springframework.cloud.stream.annotation.StreamListener(TestSink.INPUT)
     public void processSMS(Message<TransactionMsg> message) {
+        LOGGER.info("===============consume notification message: =======================" + message.toString());
         process(message.getPayload());
     }
 
