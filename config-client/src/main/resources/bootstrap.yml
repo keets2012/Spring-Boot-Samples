@@ -4,6 +4,38 @@ server:
 
 management.security.enabled: false
 
+spring:
+  redis:
+    database: 0
+---
+############################## Redis config #############################
+cache:
+  # pool config
+  pool:
+    maxIdle: 15
+    maxTotal: 30
+    maxWaitMillis: 6000
+    minIdle: 10
+    numTestsPerEvictionRun: 10
+    testOnBorrow: false
+    testOnReturn: false
+    testWhileIdle: false
+    timeBetweenEvictionRunsMillis: 6000
+  # enable redis
+  redis:
+    enabled: true
+# if flush all the cache when start up
+redis:
+  cluster:
+    enabled: true
+  database: 15
+  host:
+    address: ${REDIS_ADDRESS:192.168.1.204}
+    password: ${REDIS_PWD:Superid123}
+    port: ${REDIS_PORT:6378}
+  setup:
+    flushdb: true
+
 cloud:
   version: Brixton SR7
 
@@ -36,8 +68,6 @@ spring:
       port: 8500
 
 ---
-
-zuul.ignoreLocalService: false
 
 spring:
   profiles:

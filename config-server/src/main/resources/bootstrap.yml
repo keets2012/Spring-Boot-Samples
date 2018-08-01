@@ -1,5 +1,3 @@
-
-
 server:
   port: 8888
 
@@ -49,3 +47,16 @@ spring:
           searchPaths: ${APP_LOCATE:dev}
           username: keets
           password: keets1992
+
+---
+spring:
+  redis:
+    host: 192.168.1.204
+    port: 6378
+    database: 12
+    password: Superid123
+    pool:
+      max-idle: 8
+      min-idle: 4
+      max-active: 8
+      max-wait: -1
