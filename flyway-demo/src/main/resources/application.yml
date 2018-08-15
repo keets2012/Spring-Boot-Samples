@@ -1,0 +1,22 @@
+server:
+  port: 18899
+
+spring:
+  datasource:
+    hikari:
+      connection-test-query: SELECT 1
+      minimum-idle: 1
+      maximum-pool-size: 5
+      pool-name: dbcp1
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.1.204:3306/test?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8
+    username: ${AUTH_DB_PWD:simu}
+    password: ${AUTH_DB_USER:simu123}
+    type: com.zaxxer.hikari.HikariDataSource
+
+---
+
+flyway:
+  locations: classpath:db/migration
+  baseline-on-migrate: true
+  url: jdbc:mysql://192.168.1.204:3306/test
