@@ -47,7 +47,7 @@ spring:
     enabled: false
   profiles: default
   datasource:
-    url:  jdbc:mysql://localhost:3307/zipkin?autoReconnect=true&useSSL=false
+    url: jdbc:mysql://localhost:3307/zipkin?autoReconnect=true&useSSL=false
 
 
 
