@@ -20,3 +20,5 @@ flyway:
   locations: classpath:db/migration
   baseline-on-migrate: true
   url: jdbc:mysql://192.168.1.204:3306/test
+  sql-migration-prefix: V
+  sql-migration-suffix: .sql

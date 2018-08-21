@@ -27,6 +27,7 @@
         <module>zipkin-service-a</module>
         <module>zipkin-service-b</module>
         <module>java-spi</module>
+        <module>mybatis-demo</module>
     </modules>
 
     <properties>
