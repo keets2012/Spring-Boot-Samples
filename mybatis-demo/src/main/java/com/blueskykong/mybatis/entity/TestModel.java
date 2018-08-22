@@ -2,6 +2,7 @@ package com.blueskykong.mybatis.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.Value;
 
 import javax.persistence.Column;
@@ -17,6 +18,7 @@ import javax.persistence.Table;
 @Data
 @Table(name = "test")
 @AllArgsConstructor
+@NoArgsConstructor
 public class TestModel {
 
     @Id
