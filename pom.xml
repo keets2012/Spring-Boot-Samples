@@ -28,6 +28,8 @@
         <module>zipkin-service-b</module>
         <module>java-spi</module>
         <module>mybatis-demo</module>
+        <module>spring-boot-actuator</module>
+        <module>spring-boot-actuator-2</module>
     </modules>
 
     <properties>

@@ -1,0 +1,23 @@
+
+#management.endpoint.shutdown.enabled: true
+
+info:
+  app:
+    name: Spring Sample Application
+    description: This is my first spring boot application
+    version: 1.0.0
+    
+---
+spring:
+  application:
+    name: Actuator-service
+
+server:
+  port: 8005
+---
+endpoints:
+  health:
+    id: chealth
+    sensitive: false
+
+management.security.enabled: false

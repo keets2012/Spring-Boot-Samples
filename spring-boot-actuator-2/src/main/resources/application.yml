@@ -1,0 +1,27 @@
+
+#management.endpoint.shutdown.enabled: true
+
+info:
+  app:
+    name: Spring Sample Application
+    description: This is my first spring boot application
+    version: 2.0.0
+    
+---
+spring:
+  application:
+    name: Actuator-service-2
+
+server:
+  port: 8006
+
+management.endpoints.web.exposure.include: "*"
+---
+
+management:
+  endpoint:
+    health:
+      id: chealth
+      show-details: always
+      defaults:
+        enabled: true
