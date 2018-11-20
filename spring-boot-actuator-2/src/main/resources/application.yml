@@ -6,7 +6,7 @@ info:
     name: Spring Sample Application
     description: This is my first spring boot application
     version: 2.0.0
-    
+
 ---
 spring:
   application:
@@ -20,8 +20,16 @@ management.endpoints.web.exposure.include: "*"
 
 management:
   endpoint:
+    shutdown:
+      enabled: true
     health:
-      id: chealth
       show-details: always
       defaults:
         enabled: true
+
+spring:
+  security:
+    user:
+      name: actuator
+      password: actuator
+      roles: ACTUATOR_ADMIN
