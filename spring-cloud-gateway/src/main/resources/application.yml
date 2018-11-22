@@ -1,0 +1,39 @@
+server:
+  port: 8000
+spring:
+  redis:
+    host: localhost
+    port: 6379
+  application:
+      name: aoho-gateway
+  cloud:
+    consul:
+      host: 192.168.1.204
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+#        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: gateway-server-${server.port}
+        service-name: gateway-server
+---
+
+
+#spring:
+#  cloud:
+#    gateway:
+#      locator:
+#        enabled: false
+#      routes:
+#      - id: hytstrix_route
+#        uri: lb://user
+#        order: 6000
+#        predicates:
+#        - Path=/user/**
+#        filters:
+#        - StripPrefix=1
+#        - name: Hystrix
+#          args:
+#            name: fallbackcmd
+#            fallbackUri: forward:/fallbackcontroller?a=123

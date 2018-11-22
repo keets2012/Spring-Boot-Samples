@@ -26,6 +26,9 @@ management:
       show-details: always
       defaults:
         enabled: true
+    heapdump:
+      show-details: always
+
 
 spring:
   security:

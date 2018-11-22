@@ -30,6 +30,7 @@
         <module>mybatis-demo</module>
         <module>spring-boot-actuator</module>
         <module>spring-boot-actuator-2</module>
+        <module>spring-boot-admin-2</module>
     </modules>
 
     <properties>

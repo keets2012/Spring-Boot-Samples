@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+
+spring:
+  application:
+    name: admin-client
+  cloud:
+    consul:
+      host: 192.168.1.204
+      port: 8500
+      discovery:
+        ip-address: ${HOST_ADDRESS:localhost}
+        port: ${SERVER_PORT:${server.port}}
+#        healthCheckPath: /health
+        healthCheckInterval: 15s
+        instance-id: admin-client-${server.port}
+        service-name: admin-client
+
+---
+#spring.boot.admin.client.url: "http://localhost:8088"
+management.endpoints.web.exposure.include: "*"
+---
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+    health:
+      show-details: always
+      defaults:
+        enabled: true
+    heapdump:
+      show-details: always
+
+
+eureka:
+  client:
+    serviceUrl:
+      # 向每个注册中心注册
+      defaultZone: http://localhost:8761/eureka/
