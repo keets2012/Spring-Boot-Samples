@@ -1,30 +1,6 @@
 server:
   port: 8088
 
-spring:
-  application:
-    name: admin-server
-  cloud:
-    consul:
-      host: 192.168.1.204
-      port: 8500
-      discovery:
-        ip-address: ${HOST_ADDRESS:localhost}
-        port: ${SERVER_PORT:${server.port}}
-#        healthCheckPath: /health
-        healthCheckInterval: 15s
-        instance-id: admin-server-${server.port}
-        service-name: admin-server
-
-
-eureka:
-  instance:
-    leaseRenewalIntervalInSeconds: 10
-    health-check-url-path: /actuator/health
-  client:
-    registryFetchIntervalSeconds: 5
-    serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8761}/eureka/
 
 management:
   endpoints:
@@ -32,17 +8,11 @@ management:
       exposure:
         include: "*"
   endpoint:
-    health: ALWAYS
-
----
+    health:
+      show-details: always
 
 spring:
-  security:
-    user:
-      name: "admin"
-      password: "admin"
-eureka:
-  instance:
-    metadata-map:
-      user.name: "admin"
-      user.password: "admin"
+  application:
+    name: admin-server
+
+eureka.client.serviceUrl.defaultZone: http://localhost:8761/eureka/

@@ -1,0 +1,31 @@
+# Prometheus全局配置项
+global:
+  scrape_interval:     15s # 设定抓取数据的周期，默认为1min
+  evaluation_interval: 15s # 设定更新rules文件的周期，默认为1min
+  scrape_timeout: 15s # 设定抓取数据的超时时间，默认为10s
+  external_labels: # 额外的属性，会添加到拉取得数据并存到数据库中
+   monitor: 'codelab_monitor'
+
+
+# Alertmanager配置
+alerting:
+ alertmanagers:
+ - static_configs:
+   - targets: ["localhost:9093"] # 设定alertmanager和prometheus交互的接口，即alertmanager监听的ip地址和端口
+
+# rule配置，首次读取默认加载，之后根据evaluation_interval设定的周期加载
+rule_files:
+ - "alertmanager_rules.yml"
+ - "prometheus_rules.yml"
+
+# scape配置
+scrape_configs:
+- job_name: 'prometheus' # job_name默认写入timeseries的labels中，可以用于查询使用
+  scrape_interval: 15s # 抓取周期，默认采用global配置
+  static_configs: # 静态配置
+  - targets: ['192.168.1.77:9090'] # prometheus所要抓取数据的地址，即instance实例项
+
+- job_name: 'example-random'
+  metrics_path: '/actuator/prometheus'
+  static_configs:
+  - targets: ['192.168.1.77:8082']
