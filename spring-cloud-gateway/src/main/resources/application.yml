@@ -20,20 +20,42 @@ spring:
 ---
 
 
+spring:
+  cloud:
+    gateway:
+      locator:
+        enabled: false
+      default-filters:
+      - AddResponseHeader=X-Response-Default-Foo, Default-Bar
+#      - RemoveRequestHeader=Origin
+      routes:
+      - id: hytstrix_route
+        uri: lb://user
+        order: 6000
+        predicates:
+        - Path=/user/**
+        filters:
+        - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallbackcontroller?a=123
+
+logging:
+  level:
+    org.springframework.cloud.gateway: debug
+    org.springframework.http.server.reactive: info
+    org.springframework.web.reactive: debug
+    reactor.ipc.netty: info
+
+---
 #spring:
 #  cloud:
 #    gateway:
-#      locator:
-#        enabled: false
-#      routes:
-#      - id: hytstrix_route
-#        uri: lb://user
-#        order: 6000
-#        predicates:
-#        - Path=/user/**
-#        filters:
-#        - StripPrefix=1
-#        - name: Hystrix
-#          args:
-#            name: fallbackcmd
-#            fallbackUri: forward:/fallbackcontroller?a=123
+#      globalcors:
+#        corsConfigurations:
+#          '[/**]':
+#            allowedOrigins: "*"
+#            allowedMethods:
+#            - GET
+#            - POST
