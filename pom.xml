@@ -32,6 +32,11 @@
         <module>spring-boot-actuator-2</module>
         <module>spring-boot-admin-2</module>
         <module>spring-boot-actuator-prometheus</module>
+        <module>spring-cloud-gateway</module>
+        <module>spring-boot-rabbitmq</module>
+        <module>eureka-server</module>
+        <module>reactor-webflux</module>
+        <module>flyway-demo</module>
     </modules>
 
     <properties>

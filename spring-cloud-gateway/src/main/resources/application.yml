@@ -8,7 +8,7 @@ spring:
       name: aoho-gateway
   cloud:
     consul:
-      host: 192.168.1.204
+      host: 122.152.224.72
       port: 8500
       discovery:
         ip-address: ${HOST_ADDRESS:localhost}
