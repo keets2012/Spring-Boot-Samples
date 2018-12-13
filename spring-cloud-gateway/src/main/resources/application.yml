@@ -36,6 +36,7 @@ spring:
         - Path=/user/**
         filters:
         - StripPrefix=1
+        - RemoveRequestHeader=Origin
         - name: Hystrix
           args:
             name: fallbackcmd

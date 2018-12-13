@@ -35,8 +35,7 @@ public class SpringCloudGatewayApplication {
     }
 
     @GetMapping("/proxy/{id}")
-    public Mono<ResponseEntity<Object>> proxyFoos(@PathVariable Integer id, ProxyExchange<Object> proxy)
-            throws Exception {
+    public Mono<ResponseEntity<Object>> proxyFoos(@PathVariable Integer id, ProxyExchange<Object> proxy) {
         return proxy.uri("http://user:" + port + "/foos/" + id).get();
     }
     @RestController
