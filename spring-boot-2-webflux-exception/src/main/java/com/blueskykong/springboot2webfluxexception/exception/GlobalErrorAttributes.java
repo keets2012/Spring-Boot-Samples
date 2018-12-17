@@ -24,20 +24,15 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes {
 
     @Override
     public Map<String, Object> getErrorAttributes(ServerRequest request, boolean includeStackTrace) {
-        Map<String, Object> map = assembleError(request);
-//        request.
-//        map.put("status", getStatus());
-//        map.put("message", getMessage());
-        return map;
+        return assembleError(request);
     }
 
     private Map<String, Object> assembleError(ServerRequest request) {
         Map<String, Object> errorAttributes = new LinkedHashMap<>();
         Throwable error = getError(request);
-        if (error instanceof Exception) {
+        if (error instanceof ServerException) {
             errorAttributes.put("code", ((ServerException) error).getCode().getCode());
             errorAttributes.put("data", error.getMessage());
-
         } else {
             errorAttributes.put("code", HttpStatus.INTERNAL_SERVER_ERROR);
             errorAttributes.put("data", "GATEWAY ERROR");

@@ -13,13 +13,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  */
 @RestControllerAdvice
 public class CustomExceptionHandler {
-    protected final Log logger = LogFactory.getLog(getClass());
+    private final Log logger = LogFactory.getLog(getClass());
 
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(code = HttpStatus.OK)
     public ErrorCode handleCustomException(Exception e) {
-        System.out.println("===========" + e.getLocalizedMessage());
         logger.error(e.getMessage());
         return new ErrorCode("e","error" );
     }
