@@ -12,8 +12,12 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 
 @Configuration
 public class RouterConfig {
+    private final TimeHandler timeHandler;
+
     @Autowired
-    private TimeHandler timeHandler;
+    public RouterConfig(TimeHandler timeHandler) {
+        this.timeHandler = timeHandler;
+    }
 
     @Bean
     public RouterFunction<ServerResponse> timerRouter() {
