@@ -16,7 +16,6 @@ import java.util.Map;
 public class GlobalErrorAttributes extends DefaultErrorAttributes {
 
     private HttpStatus status = HttpStatus.BAD_REQUEST;
-    private String message = "please provide a name";
 
     public GlobalErrorAttributes() {
         super(false);
@@ -53,19 +52,4 @@ public class GlobalErrorAttributes extends DefaultErrorAttributes {
     public void setStatus(HttpStatus status) {
         this.status = status;
     }
-
-    /**
-     * @return the message
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * @param message the message to set
-     */
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
 }

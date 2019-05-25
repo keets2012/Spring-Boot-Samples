@@ -1,5 +1,8 @@
 package com.blueskykong.springboot2webfluxexception.handler;
 
+import com.blueskykong.springboot2webfluxexception.exception.ErrorCode;
+import com.blueskykong.springboot2webfluxexception.exception.ServerException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -19,9 +22,14 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 public class TimeHandler {
     public Mono<ServerResponse> getTime(ServerRequest serverRequest) {
         String timeType = serverRequest.queryParam("time").orElse("Now");
-        return getTimeByType(timeType).flatMap(s -> ServerResponse.ok()
+        /*return getTimeByType(timeType).flatMap(s -> ServerResponse.ok()
                 .contentType(MediaType.TEXT_PLAIN).syncBody(s))
-                .onErrorResume(e -> Mono.just("Error: " + e.getMessage()).flatMap(s -> ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).syncBody(s)));
+                .onErrorResume(e -> Mono.just("Error: " + e.getMessage()).flatMap(s -> ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).syncBody(s)));*/
+
+        return ServerResponse.ok()
+                .body(getTimeByType(timeType)
+                        .onErrorResume(e -> Mono.error(new ServerException(new ErrorCode(HttpStatus.BAD_REQUEST.value(),
+                                "timeType is required", e.getMessage())))), String.class);
     }
 
     private Mono<String> getTimeByType(String timeType) {
@@ -39,7 +47,11 @@ public class TimeHandler {
     }
 
     public Mono<ServerResponse> getDate(ServerRequest serverRequest) {
-        return ok().contentType(MediaType.TEXT_PLAIN).body(Mono.just("Today is " + new SimpleDateFormat("yyyy-MM-dd").format(new Date())), String.class);
+        String timeType = serverRequest.queryParam("time").get();
+        return getTimeByType(timeType)
+                .onErrorReturn("Today is " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
+                .flatMap(s -> ServerResponse.ok()
+                        .contentType(MediaType.TEXT_PLAIN).syncBody(s));
     }
 
 

@@ -1,0 +1,5 @@
+app.id: spring-boot-logger
+  # set apollo meta server address, adjust to actual address if necessary
+apollo.meta: http://106.12.25.204:8080
+server:
+  port: 0
