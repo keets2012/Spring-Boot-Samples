@@ -18,7 +18,7 @@ import static org.springframework.web.reactive.function.server.ServerResponse.ok
 @Component
 public class TimeHandler {
     public Mono<ServerResponse> getTime(ServerRequest serverRequest) {
-        String timeType = serverRequest.queryParam("time").orElse("Now");
+        String timeType = serverRequest.queryParam("time").get();
         return getTimeByType(timeType).flatMap(s -> ServerResponse.ok()
                 .contentType(MediaType.TEXT_PLAIN).syncBody(s))
                 .onErrorResume(e -> Mono.just("Error: " + e.getMessage()).flatMap(s -> ServerResponse.ok().contentType(MediaType.TEXT_PLAIN).syncBody(s)));
@@ -39,7 +39,11 @@ public class TimeHandler {
     }
 
     public Mono<ServerResponse> getDate(ServerRequest serverRequest) {
-        return ok().contentType(MediaType.TEXT_PLAIN).body(Mono.just("Today is " + new SimpleDateFormat("yyyy-MM-dd").format(new Date())), String.class);
+        String timeType = serverRequest.queryParam("time").get();
+        return getTimeByType(timeType)
+                .onErrorReturn("Today is " + new SimpleDateFormat("yyyy-MM-dd").format(new Date()))
+                .flatMap(s -> ServerResponse.ok()
+                        .contentType(MediaType.TEXT_PLAIN).syncBody(s));
     }
 
 
