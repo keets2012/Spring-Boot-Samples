@@ -38,6 +38,7 @@
         <module>reactor-webflux</module>
         <module>flyway-demo</module>
         <module>spring-boot-2-webflux-exception</module>
+        <module>apollo-demo</module>
     </modules>
 
     <properties>

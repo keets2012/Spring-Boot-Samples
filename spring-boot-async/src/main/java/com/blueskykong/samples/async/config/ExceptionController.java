@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
  * @author keets
  * @data 2018-12-16.
  */
-@ControllerAdvice
+//@ControllerAdvice
 public class ExceptionController {
     @ExceptionHandler(RuntimeException.class)
     public ModelAndView handlerRuntimeException(RuntimeException ex) {
