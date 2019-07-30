@@ -30,12 +30,6 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-consul-discovery</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>cn.superid</groupId>
-            <artifactId>cloud-common-redis</artifactId>
-            <version>${common.version}</version>
-        </dependency>
     </dependencies>
 
 
