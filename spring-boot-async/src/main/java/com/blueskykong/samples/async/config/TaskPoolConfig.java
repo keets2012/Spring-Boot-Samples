@@ -20,7 +20,9 @@ public class TaskPoolConfig {
         executor.setThreadNamePrefix("taskExecutor-");
         executor.setWaitForTasksToCompleteOnShutdown(true);
         executor.setAwaitTerminationSeconds(60);
+        executor.setTaskDecorator(new ContextDecorator());
         executor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+        executor.initialize();
         return executor;
     }
 }
